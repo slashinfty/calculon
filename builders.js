@@ -8,15 +8,15 @@ export const CommandBuilders = [
             .setName('day')
             .setDescription('Select the day of the week')
             .setRequired(true)
-            .addChoices([
-                ['0', 'Sunday'],
-                ['1', 'Monday'],
-                ['2', 'Tuesdays'],
-                ['3', 'Wednesday'],
-                ['4', 'Thursday'],
-                ['5',' Friday'],
-                ['6', 'Saturday']
-            ])),
+            .addChoices(
+                { name: 'Sunday', value: '0' },
+                { name: 'Monday', value: '1' },
+                { name: 'Tuesday', value: '2' },
+                { name: 'Wednesday', value: '3' },
+                { name: 'Thursday', value: '4' },
+                { name: 'Friday', value: '5' },
+                { name: 'Saturday', value: '6' }
+            )),
     new SlashCommandBuilder()
         .setName('hourly-forecast')
         .setDescription('Forecast for the next set of hours')
@@ -31,10 +31,10 @@ export const CommandBuilders = [
             .setName('type')
             .setDescription('Select movie or TV show')
             .setRequired(true)
-            .addChoices([
-                ['Movies', 'Movie'],
-                ['TV shows', 'TV show']
-            ]))
+            .addChoices(
+                { name: 'Movie', value: 'Movies' },
+                { name: 'TV Show', value: 'TV shows' }
+            ))
         .addStringOption(option => option
             .setName('title')
             .setDescription('Enter the title to search for')
