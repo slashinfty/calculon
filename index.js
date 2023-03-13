@@ -2,7 +2,7 @@
 import * as dotenv from 'dotenv';
 import { Client, Events, GatewayIntentBits } from 'discord.js';
 
-import { SlashCommands } from './discord/commands.js';
+import { SlashCommands } from './commands.js';
 
 /** .env */
 dotenv.config();
