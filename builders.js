@@ -16,14 +16,14 @@ export const CommandBuilders = [
                 { name: 'Thursday', value: '4' },
                 { name: 'Friday', value: '5' },
                 { name: 'Saturday', value: '6' }
-            )),
+            )).toJSON(),
     new SlashCommandBuilder()
         .setName('hourly-forecast')
         .setDescription('Forecast for the next set of hours')
         .addIntegerOption(option => option
             .setName('hours')
             .setDescription('Enter a number of hours (up to 24)')
-            .setRequired(true)),
+            .setRequired(true)).toJSON(),
     new SlashCommandBuilder()
         .setName('search-emby')
         .setDescription('Search Emby for a movie or TV show')
@@ -38,5 +38,5 @@ export const CommandBuilders = [
         .addStringOption(option => option
             .setName('title')
             .setDescription('Enter the title to search for')
-            .setRequired(true))
+            .setRequired(true)).toJSON()
 ];

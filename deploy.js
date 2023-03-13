@@ -11,7 +11,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
     try {
         const result = await rest.put(
             Routes.applicationGuildCommands(process.env.DISCORD_CLIENT_ID, process.env.DISCORD_GUILD_ID),
-            { body: CommandBuilders.map(cmd => cmd.toJSON()) }
+            { body: CommandBuilders }
         );
         console.log(`Reloaded ${result.length} slash commands`);
     } catch (error) {
