@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from 'discord.js';
 
 export const CommandBuilders = [
     new SlashCommandBuilder()
-        .setName('dailyForecast')
+        .setName('daily-forecast')
         .setDescription('Forecast for a given day of the week')
         .addStringOption(option => option
             .setName('day')
@@ -18,14 +18,14 @@ export const CommandBuilders = [
                 ['6', 'Saturday']
             ])),
     new SlashCommandBuilder()
-        .setName('hourlyForecast')
+        .setName('hourly-forecast')
         .setDescription('Forecast for the next set of hours')
         .addIntegerOption(option => option
             .setName('hours')
             .setDescription('Enter a number of hours (up to 24)')
             .setRequired(true)),
     new SlashCommandBuilder()
-        .setName('searchEmby')
+        .setName('search-emby')
         .setDescription('Search Emby for a movie or TV show')
         .addStringOption(option => option
             .setName('type')

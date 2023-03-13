@@ -2,7 +2,7 @@ import { Collection } from "discord.js";
 
 const SlashCommands = new Collection();
 
-SlashCommands.set('dailyForecast', async interaction => {
+SlashCommands.set('daily-forecast', async interaction => {
     const day = parseInt(interaction.options.getString('day'));
     const response = await fetch('https://api.weather.gov/gridpoints/LWX/110,94/forecast');
     const data = await response.json();
@@ -25,7 +25,7 @@ SlashCommands.set('dailyForecast', async interaction => {
     }
 });
 
-SlashCommands.set('hourlyForecast', async interaction => {
+SlashCommands.set('hourly-forecast', async interaction => {
     const hours = Math.min(interaction.options.getInteger('hours'), 24);
     const response = await fetch('https://api.weather.gov/gridpoints/LWX/110,94/forecast/hourly');
     const data = await response.json();
@@ -51,7 +51,7 @@ SlashCommands.set('hourlyForecast', async interaction => {
     }
 });
 
-SlashCommands.set('searchEmby', async interaction => {
+SlashCommands.set('search-emby', async interaction => {
     try {
         const userResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/Public`);
         const userData = await userResponse.json();
