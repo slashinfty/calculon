@@ -56,19 +56,24 @@ SlashCommands.set('search-emby', async interaction => {
         const userResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/Public`);
         const userData = await userResponse.json();
         const userId = userData.find(user => user['Name'] === process.env.EMBY_NAME)['Id'];
+        console.log(`userId:${userId}`);
         const mediaResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/${userId}/Views?IncludeExternalContent=false`, {
             headers: {
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         });
         const mediaData = await mediaResponse.json();
         const mediaId = mediaData.find(media => media['Name'] === interaction.options.getString('type'))['Id'];
+        console.log(`mediaId:${mediaId}`);
         const itemResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/${userId}/Items?ParentId=${mediaId}&api_key=${process.env.EMBY_API}`, {
             headers: {
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         });
         const itemData = await itemResponse.json();
+        console.log(`itemData length: ${itemData.length}`);
         const title = interaction.options.getString('title');
         const itemResult = itemData.filter(item => item['Name'].toLowerCase().includes(title.toLowerCase()));
         let response = itemResult.length === 0 ? `No results for ${title}` : `Found the following results for ${title}: ${itemResult.reduce((str, item) => str + `\n${item['Name']}`, '')}`;
