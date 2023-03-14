@@ -14,7 +14,7 @@ SlashCommands.set('daily-forecast', async interaction => {
         let response = filtered.reduce((str, per, i) => str += `${i === 0 ? '' : '\n'}${per.name}: ${per.detailedForecast}`, '');
         await interaction.reply({
             content: response,
-            ephemeral: false
+            ephemeral: interaction.options.getBoolean('private') ?? false
         });
     } catch (e) {
         console.error(e);
@@ -40,7 +40,7 @@ SlashCommands.set('hourly-forecast', async interaction => {
         }
         await interaction.reply({
             content: response,
-            ephemeral: false
+            ephemeral: interaction.options.getBoolean('private') ?? false
         });
     } catch (e) {
         console.error(e);
@@ -74,7 +74,7 @@ SlashCommands.set('search-emby', async interaction => {
         let response = itemResult.length === 0 ? `No results for ${title}` : `Found the following results for ${title}: ${itemResult.reduce((str, item) => str + `\n${item['Name']}`, '')}`;
         await interaction.reply({
             content: response,
-            ephemeral: false
+            ephemeral: interaction.options.getBoolean('private') ?? false
         });
     } catch (e) {
         console.error(e);
