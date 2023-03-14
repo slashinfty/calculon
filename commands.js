@@ -60,7 +60,7 @@ SlashCommands.set('search-emby', async interaction => {
         const mediaResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/${userId}/Views?IncludeExternalContent=false`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Encoding': 'deflate'
+                'Accept-Encoding': 'gzip, deflate'
             }
         });
         const mediaData = await mediaResponse.json();
@@ -69,7 +69,7 @@ SlashCommands.set('search-emby', async interaction => {
         const itemResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/${userId}/Items?ParentId=${mediaId}&api_key=${process.env.EMBY_API}`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Encoding': 'deflate'
+                'Accept-Encoding': 'gzip, deflate'
             }
         });
         const itemData = await itemResponse.json();
