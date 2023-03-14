@@ -62,7 +62,7 @@ SlashCommands.set('search-emby', async interaction => {
             }
         });
         const mediaData = await mediaResponse.json();
-        const mediaId = mediaData.find(media => media['Name'] === interaction.options.getString('type'))['Id'];
+        const mediaId = mediaData['Items'].find(media => media['Name'] === interaction.options.getString('type'))['Id'];
         const itemResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/${userId}/Items?ParentId=${mediaId}&api_key=${process.env.EMBY_API}`, {
             headers: {
                 'Accept-Encoding': 'zlib'
@@ -70,7 +70,7 @@ SlashCommands.set('search-emby', async interaction => {
         });
         const itemData = await itemResponse.json();
         const title = interaction.options.getString('title');
-        const itemResult = itemData.filter(item => item['Name'].toLowerCase().includes(title.toLowerCase()));
+        const itemResult = itemData['Items'].filter(item => item['Name'].toLowerCase().includes(title.toLowerCase()));
         let response = itemResult.length === 0 ? `No results for ${title}` : `Found the following results for ${title}: ${itemResult.reduce((str, item) => str + `\n${item['Name']}`, '')}`;
         await interaction.reply({
             content: response,
