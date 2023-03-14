@@ -50,16 +50,24 @@ SlashCommands.set('hourly-forecast', async interaction => {
         });
     }
 });
-/*
+
 SlashCommands.set('search-emby', async interaction => {
     try {
         const userResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/Public`);
         const userData = await userResponse.json();
         const userId = userData.find(user => user['Name'] === process.env.EMBY_NAME)['Id'];
-        const mediaResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/${userId}/Views?IncludeExternalContent=false`);
+        const mediaResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/${userId}/Views?IncludeExternalContent=false`, {
+            headers: {
+                'Accept-Encoding': 'zlib'
+            }
+        });
         const mediaData = await mediaResponse.json();
         const mediaId = mediaData.find(media => media['Name'] === interaction.options.getString('type'))['Id'];
-        const itemResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/${userId}/Items?ParentId=${mediaId}&api_key=${process.env.EMBY_API}`);
+        const itemResponse = await fetch(`${process.env.EMBY_IP}/emby/Users/${userId}/Items?ParentId=${mediaId}&api_key=${process.env.EMBY_API}`, {
+            headers: {
+                'Accept-Encoding': 'zlib'
+            }
+        });
         const itemData = await itemResponse.json();
         const title = interaction.options.getString('title');
         const itemResult = itemData.filter(item => item['Name'].toLowerCase().includes(title.toLowerCase()));
@@ -76,6 +84,5 @@ SlashCommands.set('search-emby', async interaction => {
         });
     }
 });
-*/
 
 export { SlashCommands };
