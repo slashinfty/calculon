@@ -24,7 +24,7 @@ export const CommandBuilders = [
             .setName('hours')
             .setDescription('Enter a number of hours (up to 24)')
             .setRequired(true)).toJSON(),
-    new SlashCommandBuilder()
+    /*new SlashCommandBuilder()
         .setName('search-emby')
         .setDescription('Search Emby for a movie or TV show')
         .addStringOption(option => option
@@ -38,5 +38,5 @@ export const CommandBuilders = [
         .addStringOption(option => option
             .setName('title')
             .setDescription('Enter the title to search for')
-            .setRequired(true)).toJSON()
+            .setRequired(true)).toJSON()*/
 ];
